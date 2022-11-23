@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
 
-    const menuItem = <>  <li><Link>Item 1</Link></li>
-        <li><Link>Parent </Link> </li>
-        <li><Link>Item 3</Link></li></>
+    const menuItem =
+        <>
+            <li><Link>Item 1</Link></li>
+            <li><Link>Parent </Link> </li>
+            <li><Link>Item 3</Link></li>
+        </>
     return (
         <div>
             <div className="navbar bg-base-100">
