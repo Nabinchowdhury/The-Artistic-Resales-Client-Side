@@ -6,7 +6,7 @@ const About = () => {
         <div className=''>
             <h2 className='text-4xl font-bold my-20'>About Us</h2>
             <div className="card lg:card-side bg-base-100 shadow-xl lg:mx-32">
-                <figure><img src="https://media.bizj.us/view/img/11387806/gettyimages-684852818*1200xx7360-4140-0-386.jpg" alt="Album" /></figure>
+                <figure><img src="https://media.bizj.us/view/img/11387806/gettyimages-684852818*1200xx7360-4140-0-386.jpg" alt="Album" className='h-full' /></figure>
                 <div className="card-body ">
                     <h2 className="card-title my-10 text-2xl font-bold" >Want to trade your instrument?</h2>
                     <p className='text-left'>Looking for trading Used Gear? You may have just discovered your solution. Sound interesting?</p>
