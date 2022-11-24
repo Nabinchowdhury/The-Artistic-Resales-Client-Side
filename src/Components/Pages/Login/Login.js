@@ -9,7 +9,7 @@ import Spinner from "../../Spinner/Spinner";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signIn, googleSignIn } = useContext(AuthContext)
+    const { signIn, googleSignIn, user } = useContext(AuthContext)
     const [signInError, setSignInError] = useState("")
     const [showSpinner, setShowSpinner] = useState(false)
     const navigate = useNavigate()
@@ -41,6 +41,11 @@ const Login = () => {
         const user = { name, email, type }
         console.log(user)
     }
+
+    if (user) {
+        return navigate('/')
+    }
+
     return (
         <div className='flex justify-center items-center mt-20'>
             <div className='w-96 p-7'>
