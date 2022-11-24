@@ -56,6 +56,23 @@ const SignUp = () => {
 
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
+                    <div className="form-control w-full max-w-xs my-5">
+                        <label className="label"> <span className="label-text">Account Type</span></label>
+                        <div className='flex items-center'>
+                            <input type="radio" name="radio-1" className="radio" value="Buyer"   {...register("type", {
+                                required: "Select an account type"
+                            })} />
+                            <label className="label"> <span className="label-text">Buyer</span></label>
+                        </div>
+                        <div className='flex items-center'>
+                            <input type="radio" name="radio-1" className="radio" value="Seller"  {...register("type", {
+                                required: "Select an account type"
+                            })} />
+                            <label className="label"> <span className="label-text">Seller</span></label>
+                        </div>
+                        {errors.type && <p className='text-red-600'>{errors.type?.message}</p>}
+                    </div>
+
                     <input className='btn w-full mt-5' value="Sign Up" type="submit" />
                     <div>
                         {
