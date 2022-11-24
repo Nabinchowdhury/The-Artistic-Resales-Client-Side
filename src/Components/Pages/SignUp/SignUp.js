@@ -12,6 +12,11 @@ const SignUp = () => {
     const [showSpinner, setShowSpinner] = useState(false)
     const navigate = useNavigate()
 
+    const saveUserToDb = (name, email, type) => {
+        const user = { name, email, type }
+        console.log(user)
+    }
+
 
     const handleSignUp = data => {
         setShowSpinner(true)
@@ -20,7 +25,7 @@ const SignUp = () => {
         const email = data.email
         const password = data.password
         const type = data.type
-        console.log(name, email, password, type)
+        // console.log(name, email, password, type)
 
         createUser(email, password)
             .then(result => {
@@ -62,10 +67,6 @@ const SignUp = () => {
 
     }
 
-    const saveUserToDb = (name, email, type) => {
-        const user = { name, email, type }
-        console.log(user)
-    }
 
     if (user) {
         return navigate('/')
