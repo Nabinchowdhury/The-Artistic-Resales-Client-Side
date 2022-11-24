@@ -7,7 +7,7 @@ import Spinner from '../../Spinner/Spinner';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { googleSignIn, user, createUser, updateUser } = useContext(AuthContext)
+    const { googleSignIn, user, createUser, updateUser, setLoading } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState("")
     const [showSpinner, setShowSpinner] = useState(false)
     const navigate = useNavigate()
@@ -40,6 +40,7 @@ const SignUp = () => {
                 setSignUpError(err.message)
             }).finally(() => {
                 setShowSpinner(false)
+                setLoading(false);
             })
     }
 
@@ -56,6 +57,7 @@ const SignUp = () => {
                 setSignUpError(err.message)
             }).finally(() => {
                 setShowSpinner(false)
+                setLoading(false);
             })
 
     }
@@ -66,7 +68,7 @@ const SignUp = () => {
     }
 
     if (user) {
-        // return navigate('/')
+        return navigate('/')
     }
 
     return (

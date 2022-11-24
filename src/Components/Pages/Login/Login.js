@@ -9,23 +9,43 @@ import Spinner from "../../Spinner/Spinner";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signIn, googleSignIn, user } = useContext(AuthContext)
+    const { signIn, googleSignIn, user, setLoading } = useContext(AuthContext)
     const [signInError, setSignInError] = useState("")
     const [showSpinner, setShowSpinner] = useState(false)
     const navigate = useNavigate()
 
+    const saveUserToDb = (name, email, type) => {
+        const user = { name, email, type }
+        console.log(user)
+    }
 
     const handleLogin = data => {
-        console.log(data)
+        setShowSpinner(true)
+        setSignInError('')
+
+        const email = data.email
+        const password = data.password
+
+        signIn(email, password)
+            .then((result) => {
+                const currentUser = result.user
+            }).catch(err => {
+                setSignInError(err.message)
+            }).finally(() => {
+                setShowSpinner(false)
+                setLoading(false)
+            })
+
+
     }
 
     const handleGoogleSignin = () => {
         setShowSpinner(true)
+        setSignInError("")
         googleSignIn()
             .then((result) => {
                 const user = result.user
                 toast.success('Sign in SuccessFull')
-                setSignInError("")
                 saveUserToDb(user?.displayName, user?.email, "Buyer")
                 navigate("/")
 
@@ -33,13 +53,8 @@ const Login = () => {
                 setSignInError(err.message)
             }).finally(() => {
                 setShowSpinner(false)
+                setLoading(false);
             })
-
-    }
-
-    const saveUserToDb = (name, email, type) => {
-        const user = { name, email, type }
-        console.log(user)
     }
 
     if (user) {
