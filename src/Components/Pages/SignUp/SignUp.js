@@ -15,6 +15,7 @@ const SignUp = () => {
 
     const handleSignUp = data => {
         setShowSpinner(true)
+        setSignUpError('')
         const name = data.name
         const email = data.email
         const password = data.password
@@ -25,24 +26,30 @@ const SignUp = () => {
             .then(result => {
                 const currentUser = result.user
                 toast.success("Sign up successfull")
-                setSignUpError("")
                 const userInfo = {
                     displayName: data.name
                 }
                 updateUser(userInfo)
-                saveUserToDb(name, email, type)
+                    .then(() => {
+                        saveUserToDb(name, email, type)
+                        // navigate('/')
+                    }).catch((err) => {
+                        setSignUpError(err.message)
+                    })
+            }).catch((err) => {
+                setSignUpError(err.message)
+            }).finally(() => {
                 setShowSpinner(false)
-                navigate('/')
             })
     }
 
     const handleGoogleSignin = () => {
+        setSignUpError('')
         setShowSpinner(true)
         googleSignIn()
             .then((result) => {
                 const currentUser = result.user
                 toast.success('Sign in SuccessFull')
-                setSignUpError("")
                 saveUserToDb(currentUser?.displayName, currentUser?.email, "Buyer")
                 navigate("/")
             }).catch(err => {
@@ -59,7 +66,7 @@ const SignUp = () => {
     }
 
     if (user) {
-        return navigate('/')
+        // return navigate('/')
     }
 
     return (
