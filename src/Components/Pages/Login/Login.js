@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import Spinner from "../../Spinner/Spinner";
 import axios from 'axios';
@@ -16,9 +16,10 @@ const Login = () => {
     const [userEmail, setUserEmail] = useState("")
     const [token] = useToken(userEmail)
     const navigate = useNavigate()
-
+    const location = useLocation()
+    const from = location.state.from.pathname || "/ "
     if (token) {
-        navigate('/')
+        navigate(from, { replace: true })
     }
 
     const saveUserToDb = (name, email, type) => {

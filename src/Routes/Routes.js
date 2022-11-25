@@ -8,6 +8,7 @@ import MyOrders from "../Components/Pages/Dashboard/Buyer/MyOrders/MyOrders";
 import Home from "../Components/Pages/Home/Home";
 import Login from "../Components/Pages/Login/Login";
 import SignUp from "../Components/Pages/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: "/dashboard",
-                element: <MyOrders></MyOrders>
+                element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
             },
             {
                 path: "/dashboard/admin/sellers",
