@@ -5,24 +5,28 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import Spinner from "../../Spinner/Spinner";
 import axios from 'axios';
+import useToken from "../../Hooks/useToken/useToken";
 
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signIn, googleSignIn, user, setLoading } = useContext(AuthContext)
+    const { signIn, googleSignIn, setLoading } = useContext(AuthContext)
     const [signInError, setSignInError] = useState("")
     const [showSpinner, setShowSpinner] = useState(false)
     const [userEmail, setUserEmail] = useState("")
+    const [token] = useToken(userEmail)
     const navigate = useNavigate()
+
+    if (token) {
+        navigate('/')
+    }
 
     const saveUserToDb = (name, email, type) => {
         const user = { name, email, type }
         // console.log(user)
         axios.post('http://localhost:5000/users', user)
             .then(res => {
-                // console.log(res.data)
                 if (res.data.acknowledged) {
-                    // console.log(res.data)
                     setUserEmail(email)
                 }
             })
@@ -59,7 +63,7 @@ const Login = () => {
                 const currentUser = result.user
                 toast.success('Sign in SuccessFull')
                 saveUserToDb(currentUser?.displayName, currentUser?.email, "Buyer")
-                navigate("/")
+                // navigate("/")
 
             }).catch(err => {
                 setSignInError(err.message)
@@ -69,9 +73,6 @@ const Login = () => {
             })
     }
 
-    if (user) {
-        return navigate('/')
-    }
 
     return (
         <div className='flex justify-center items-center mt-20'>

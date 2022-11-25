@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useToken from '../../Hooks/useToken/useToken';
 import Spinner from '../../Spinner/Spinner';
 
 const SignUp = () => {
@@ -12,8 +13,12 @@ const SignUp = () => {
     const [signUpError, setSignUpError] = useState("")
     const [showSpinner, setShowSpinner] = useState(false)
     const [userEmail, setUserEmail] = useState("")
+    const [token] = useToken(userEmail)
     const navigate = useNavigate()
 
+    if (token) {
+        navigate('/')
+    }
     const saveUserToDb = (name, email, type) => {
         const user = { name, email, type }
         // console.log(user)
@@ -48,7 +53,7 @@ const SignUp = () => {
                 updateUser(userInfo)
                     .then(() => {
                         saveUserToDb(name, email, type)
-                        // navigate('/'
+
                     }).catch((err) => {
                         setSignUpError(err.message)
                     })
@@ -68,7 +73,6 @@ const SignUp = () => {
                 const currentUser = result.user
                 toast.success('Sign in SuccessFull')
                 saveUserToDb(currentUser?.displayName, currentUser?.email, "Buyer")
-                navigate("/")
             }).catch(err => {
                 setSignUpError(err.message)
             }).finally(() => {
@@ -76,11 +80,6 @@ const SignUp = () => {
                 setLoading(false);
             })
 
-    }
-
-
-    if (user) {
-        return navigate('/')
     }
 
     return (
