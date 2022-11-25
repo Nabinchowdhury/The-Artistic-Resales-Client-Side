@@ -8,7 +8,7 @@ const DashboardLayout = () => {
             <Header></Header>
             <div className="drawer drawer-mobile">
                 <input id="dashboardDrawer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content ">
                     <Outlet></Outlet>
 
 
@@ -27,8 +27,8 @@ const DashboardLayout = () => {
                         <li><Link>My Buyers</Link></li>
 
                         {/* Admin */}
-                        <li><Link>All Sellers</Link></li>
-                        <li><Link>All Buyers</Link></li>
+                        <li><Link to="/dashboard/admin/sellers">All Sellers</Link></li>
+                        <li><Link to="/dashboard/admin/buyers">All Buyers</Link></li>
                         <li><Link>Reported Items</Link></li>
                     </ul>
 

@@ -20,7 +20,11 @@ const SignUp = () => {
         navigate('/')
     }
     const saveUserToDb = (name, email, type) => {
-        const user = { name, email, type }
+        const user = {
+            name,
+            email,
+            role: type
+        }
         // console.log(user)
         axios.post('http://localhost:5000/users', user)
             .then(res => {
