@@ -45,6 +45,7 @@ const Login = () => {
                 const currentUser = result.user
                 setUserEmail(email)
             }).catch(err => {
+                // console.log(err)
                 setSignInError(err.message)
             }).finally(() => {
                 setShowSpinner(false)

@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import UserRow from '../../../Shared/UserRow/UserRow';
 import { useQuery } from '@tanstack/react-query'
 import Spinner from '../../../../Spinner/Spinner';
 
 const AllBuyers = () => {
-    const { data: allBuyers = [], isLoading, refetch } = useQuery({
-        queryKey: ["allSeller"],
+    const { data: allBuyers = [], isLoading, refetch, error } = useQuery({
+        queryKey: ["allBuyers"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/users?role=Buyer")
+            const res = await fetch("http://localhost:5000/users?role=Buyer", {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem("AccessToken")}`
+                }
+            })
             const data = res.json()
             return data
         }
