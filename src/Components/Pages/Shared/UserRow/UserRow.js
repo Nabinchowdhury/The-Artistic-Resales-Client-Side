@@ -7,15 +7,17 @@ const UserRow = ({ index, userData }) => {
     return (
         <tr>
             <th>{index + 1}</th>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
+            <td>{name}</td>
+            <td>{email}</td>
             <td>
                 <>
                     {
-                        role === "Seller" && <>
+                        role === "Seller" &&
+                        <>
                             {
                                 verified ? <p className='inline'><FaCheck className='inline text-green-600'></FaCheck> Verified</p> : <button className='btn btn-success btn-xs '>Verify</button>
-                            }</>
+                            }
+                        </>
                     }
                     <button className='btn btn-error btn-xs ml-2'>Delete</button>
                 </>
