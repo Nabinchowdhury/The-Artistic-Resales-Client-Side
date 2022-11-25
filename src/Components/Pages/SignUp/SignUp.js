@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
@@ -10,13 +11,23 @@ const SignUp = () => {
     const { googleSignIn, user, createUser, updateUser, setLoading } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState("")
     const [showSpinner, setShowSpinner] = useState(false)
+    const [userEmail, setUserEmail] = useState("")
     const navigate = useNavigate()
 
     const saveUserToDb = (name, email, type) => {
         const user = { name, email, type }
-        console.log(user)
-    }
+        // console.log(user)
+        axios.post('http://localhost:5000/users', user)
+            .then(res => {
+                // console.log(res.data)
+                if (res.data.acknowledged) {
+                    // console.log(res.data)
+                    setUserEmail(email)
+                }
+            })
+            .catch(err => console.log(err))
 
+    }
 
     const handleSignUp = data => {
         setShowSpinner(true)
@@ -37,7 +48,7 @@ const SignUp = () => {
                 updateUser(userInfo)
                     .then(() => {
                         saveUserToDb(name, email, type)
-                        // navigate('/')
+                        // navigate('/'
                     }).catch((err) => {
                         setSignUpError(err.message)
                     })

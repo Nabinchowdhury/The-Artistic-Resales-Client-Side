@@ -1,10 +1,10 @@
-
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 import Spinner from "../../Spinner/Spinner";
+import axios from 'axios';
 
 
 const Login = () => {
@@ -12,13 +12,23 @@ const Login = () => {
     const { signIn, googleSignIn, user, setLoading } = useContext(AuthContext)
     const [signInError, setSignInError] = useState("")
     const [showSpinner, setShowSpinner] = useState(false)
+    const [userEmail, setUserEmail] = useState("")
     const navigate = useNavigate()
 
     const saveUserToDb = (name, email, type) => {
         const user = { name, email, type }
-        console.log(user)
-    }
+        // console.log(user)
+        axios.post('http://localhost:5000/users', user)
+            .then(res => {
+                // console.log(res.data)
+                if (res.data.acknowledged) {
+                    // console.log(res.data)
+                    setUserEmail(email)
+                }
+            })
+            .catch(err => console.log(err))
 
+    }
     const handleLogin = data => {
         setShowSpinner(true)
         setSignInError('')
@@ -29,6 +39,7 @@ const Login = () => {
         signIn(email, password)
             .then((result) => {
                 const currentUser = result.user
+                setUserEmail(email)
             }).catch(err => {
                 setSignInError(err.message)
             }).finally(() => {
@@ -40,13 +51,14 @@ const Login = () => {
     }
 
     const handleGoogleSignin = () => {
+
         setShowSpinner(true)
         setSignInError("")
         googleSignIn()
             .then((result) => {
-                const user = result.user
+                const currentUser = result.user
                 toast.success('Sign in SuccessFull')
-                saveUserToDb(user?.displayName, user?.email, "Buyer")
+                saveUserToDb(currentUser?.displayName, currentUser?.email, "Buyer")
                 navigate("/")
 
             }).catch(err => {
