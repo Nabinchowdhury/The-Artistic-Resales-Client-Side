@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-const UserRow = ({ index, userData }) => {
+const UserRow = ({ index, userData, deleteUser }) => {
 
     const { _id, name, email, role, verified } = userData
     return (
@@ -19,7 +19,7 @@ const UserRow = ({ index, userData }) => {
                             }
                         </>
                     }
-                    <button className='btn btn-error btn-xs ml-2'>Delete</button>
+                    <button className='btn btn-error btn-xs ml-2' onClick={() => deleteUser(_id)}>Delete</button>
                 </>
 
             </td>

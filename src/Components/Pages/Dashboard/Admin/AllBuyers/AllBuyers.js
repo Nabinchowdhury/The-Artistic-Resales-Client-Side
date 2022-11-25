@@ -2,6 +2,7 @@ import React from 'react';
 import UserRow from '../../../Shared/UserRow/UserRow';
 import { useQuery } from '@tanstack/react-query'
 import Spinner from '../../../../Spinner/Spinner';
+import toast from 'react-hot-toast';
 
 const AllBuyers = () => {
     const { data: allBuyers = [], isLoading, refetch, error } = useQuery({
@@ -16,6 +17,26 @@ const AllBuyers = () => {
             return data
         }
     })
+
+    const deleteUser = (id) => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: "DELETE",
+            headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("AccessToken")}`
+            }
+        }).then((res) => res.json())
+            .then(data => {
+                if (data?.deletedCount > 0) {
+                    toast.success("Deleted Successfully")
+                    refetch(0)
+                }
+            })
+            .catch(err => {
+                toast.error("Deletion Failed ")
+                console.log(err)
+            })
+    }
 
     if (isLoading) {
         return <Spinner></Spinner>
@@ -38,7 +59,7 @@ const AllBuyers = () => {
                         <tbody>
                             {
                                 allBuyers.map((Buyer, i) => <UserRow key={Buyer._id}
-                                    index={i} userData={Buyer}></UserRow>)
+                                    index={i} userData={Buyer} deleteUser={deleteUser}></UserRow>)
                             }
                         </tbody>
                     </table>

@@ -17,7 +17,7 @@ const Login = () => {
     const [token] = useToken(userEmail)
     const navigate = useNavigate()
     const location = useLocation()
-    const from = location.state.from.pathname || "/ "
+    const from = location.state?.from?.pathname || "/ "
     if (token) {
         navigate(from, { replace: true })
     }

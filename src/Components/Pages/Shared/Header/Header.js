@@ -20,7 +20,9 @@ const Header = () => {
     const menuItem =
         <>
             <li><Link>Item 1</Link></li>
-            <li><Link to="/dashboard">Dashboard </Link> </li>
+            {
+                user && <li><Link to="/dashboard">Dashboard </Link> </li>
+            }
             <li><Link>Item 3</Link></li>
             <li>{
                 user ? <button className='btn btn-outline btn-error rounded-lg' onClick={handleLogOut}>Log Out</button> : <Link to="/login"><button className='btn btn-outline'>Login</button></Link>

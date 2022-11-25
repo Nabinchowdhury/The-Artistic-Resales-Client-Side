@@ -8,6 +8,7 @@ import MyOrders from "../Components/Pages/Dashboard/Buyer/MyOrders/MyOrders";
 import Home from "../Components/Pages/Home/Home";
 import Login from "../Components/Pages/Login/Login";
 import SignUp from "../Components/Pages/SignUp/SignUp";
+import AdminRoute from "./AdminRoute/AdminRoute";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
@@ -43,7 +44,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/dashboard/admin/sellers",
-                element: <AllSellers></AllSellers>
+                element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path: "/dashboard/admin/buyers",
