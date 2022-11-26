@@ -21,6 +21,7 @@ const AddProduct = () => {
             productName: data.productName,
             image: data.image,
             price: data.price,
+            originalPrice: data.originalPrice,
             category: data.category,
             condition: data.condition,
             mobileNo: data.mobileNo,
@@ -73,6 +74,13 @@ const AddProduct = () => {
                             required: "Price is Required"
                         })} className="input input-bordered w-full" />
                         {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
+                    </div>
+                    <div className="form-control w-full ">
+                        <label className="label"> <span className="label-text">Original Price</span></label>
+                        <input type="text" {...register("originalPrice", {
+                            required: "original Price is Required"
+                        })} className="input input-bordered w-full" />
+                        {errors.originalPrice && <p className='text-red-500'>{errors.originalPrice.message}</p>}
                     </div>
 
                     <div className="form-control w-full">
