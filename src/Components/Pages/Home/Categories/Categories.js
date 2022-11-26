@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import Spinner from '../../../Spinner/Spinner';
 import CategoryCards from './CategoryCards/CategoryCards';
 
 const Categories = () => {
@@ -13,6 +14,9 @@ const Categories = () => {
         }
     })
 
+    if (isLoading) {
+        return <Spinner></Spinner>
+    }
     return (
         <div>
             <h3 className='text-4xl font-bold my-20'>Select Categories</h3>

@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CategoryCards = ({ category }) => {
+
+
     return (
         <div className='' >
             <div className="card w-auto bg-base-100 shadow-xl image-full max-h-60 md:max-h-96">
@@ -10,7 +13,7 @@ const CategoryCards = ({ category }) => {
                     <p className='text-left'>So many instruments are waiting for you!
                         Come check and get your desired instruments.</p>
                     <div className="card-actions justify-center ">
-                        <button className="btn btn-warning "> Check {category}</button>
+                        <Link to={`/category/${category}`} ><button className="btn btn-warning "> Check {category}</button></Link>
                     </div>
                 </div>
             </div>

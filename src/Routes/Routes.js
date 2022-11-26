@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Components/Layout/DashboardLayout";
 import Main from "../Components/Layout/Main"
+import CategoryProducts from "../Components/Pages/CategoryProducts/CategoryProducts";
 import AllBuyers from "../Components/Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Components/Pages/Dashboard/Admin/AllSellers/AllSellers";
 import MyOrders from "../Components/Pages/Dashboard/Buyer/MyOrders/MyOrders";
@@ -25,7 +26,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <Home></Home>
+                element: <CategoryProducts></CategoryProducts>
             },
             {
                 path: '/login',
