@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query'
 import Spinner from '../../../../Spinner/Spinner';
+import toast from 'react-hot-toast';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext)
@@ -25,7 +26,7 @@ const MyProducts = () => {
     }
 
     const deleteProduct = (id) => {
-        // console.log(id)
+        console.log(id)
         fetch(`http://localhost:5000/products/${id}`, {
             method: "DELETE",
             headers: {
@@ -34,7 +35,11 @@ const MyProducts = () => {
             }
         }).then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
+                if (data?.deletedCount > 0) {
+                    toast.success("Deleted Successfully")
+                    refetch()
+                }
             }).catch(err => console.log(err))
     }
 
