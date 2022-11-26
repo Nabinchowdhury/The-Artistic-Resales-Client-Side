@@ -4,12 +4,8 @@ const Advertisement = () => {
     const id = 1
 
     const [prev, setPrev] = useState(null)
-    const [next, setNext] = useState("#4")
-    const [change, setChange] = useState(1)
+    const [next, setNext] = useState(null)
 
-    if (change < 1) {
-        setChange(4)
-    }
     const changeAd = (id, change) => {
 
         if (change === "prev") {
@@ -18,6 +14,13 @@ const Advertisement = () => {
                 p = 3
             }
             setPrev(p)
+        }
+        if (change === "next") {
+            let p = id + 1
+            if (p > 3) {
+                p = 1
+            }
+            setNext(p)
         }
     }
 
@@ -39,7 +42,7 @@ const Advertisement = () => {
                     </div>
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-0 right-0 top-1/2">
                         <a href={`#${prev}`} onClick={() => changeAd(id, "prev")} className="btn btn-circle ">❮</a>
-                        <a href="#2" className="btn btn-circle">❯</a>
+                        <a href={`#${next}`} onClick={() => changeAd(id, "next")} className="btn btn-circle">❯</a>
                     </div>
                 </div>
                 <div id="2" className="carousel-item relative w-full ">
