@@ -3,7 +3,7 @@ import { FaCheck } from 'react-icons/fa';
 
 const UserRow = ({ index, userData, deleteUser }) => {
 
-    const { _id, name, email, role, verified } = userData
+    const { _id, name, email, role, isVerified } = userData
     return (
         <tr>
             <th>{index + 1}</th>
@@ -15,7 +15,7 @@ const UserRow = ({ index, userData, deleteUser }) => {
                         role === "Seller" &&
                         <>
                             {
-                                verified ? <p className='inline'><FaCheck className='inline text-green-600'></FaCheck> Verified</p> : <button className='btn btn-success btn-xs '>Verify</button>
+                                isVerified ? <p className='inline'><FaCheck className='inline text-blue-600'></FaCheck> Verified</p> : <button className='btn btn-success btn-xs '>Verify</button>
                             }
                         </>
                     }
