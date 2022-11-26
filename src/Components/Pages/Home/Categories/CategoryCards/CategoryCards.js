@@ -1,15 +1,16 @@
 import React from 'react';
 
-const CategoryCards = () => {
+const CategoryCards = ({ category }) => {
     return (
-        <div >
-            <div className="card w-auto bg-base-100 shadow-xl image-full">
-                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-                <div className="card-body">
-                    <h2 className="card-title">Shoes!</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
+        <div className='' >
+            <div className="card w-auto bg-base-100 shadow-xl image-full max-h-60 md:max-h-96">
+                <figure><img src="https://i.pinimg.com/736x/38/a0/77/38a07770334a71093d90460e8b18a6ac--band-rock-musica-rock.jpg" alt="" className='w-full' /></figure>
+                <div className="card-body mt-15">
+                    <h2 className="card-title flex justify-center text-3xl">{category}</h2>
+                    <p className='text-left'>So many instruments are waiting for you!
+                        Come check and get your desired instruments.</p>
+                    <div className="card-actions justify-center ">
+                        <button className="btn btn-warning "> Check {category}</button>
                     </div>
                 </div>
             </div>

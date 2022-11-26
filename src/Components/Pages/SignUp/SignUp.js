@@ -9,7 +9,7 @@ import Spinner from '../../Spinner/Spinner';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { googleSignIn, user, createUser, updateUser, setLoading } = useContext(AuthContext)
+    const { googleSignIn, createUser, updateUser, setLoading } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState("")
     const [showSpinner, setShowSpinner] = useState(false)
     const [userEmail, setUserEmail] = useState("")
