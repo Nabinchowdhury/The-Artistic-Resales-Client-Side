@@ -1,4 +1,5 @@
 
+import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { useLoaderData, useNavigation } from 'react-router-dom';
@@ -11,7 +12,26 @@ import CategoryProductCard from './CategoryProductCard/CategoryProductCard';
 const CategoryProducts = () => {
 
     const categoryProducts = useLoaderData()
+    // const id = useLoaderData()
     const [bookingProduct, setBookingProduct] = useState(null)
+
+    // const [booked, setBooked] = useState(false)
+
+    // const { data: categoryProducts = [], isLoading, refetch } = useQuery({
+    //     queryKey: ["category", id],
+    //     queryFn: async () => {
+    //         const res = await fetch(`http://localhost:5000/category/${id}`, {
+    //             headers: { authorization: `bearer ${localStorage.getItem("AccessToken")}` }
+    //         })
+    //         const data = await res.json()
+    //         return data
+    //     }
+    // })
+    // if (booked) {
+    //     console.log(booked)
+    //     refetch()
+
+    // }
 
     const navigation = useNavigation()
 
@@ -20,6 +40,9 @@ const CategoryProducts = () => {
     if (navigation.state === "loading") {
         return <Spinner></Spinner>
     }
+
+
+
     return (
         <div>
 
@@ -45,8 +68,10 @@ const CategoryProducts = () => {
                 </div>
             </div>
             {
-                bookingProduct && <BookModal bookingProduct={bookingProduct} setBookingProduct={setBookingProduct} ></BookModal>
+                bookingProduct && <BookModal bookingProduct={bookingProduct} setBookingProduct={setBookingProduct}  ></BookModal>
+
             }
+
         </div>
     );
 };

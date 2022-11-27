@@ -6,6 +6,7 @@ import AllBuyers from "../Components/Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Components/Pages/Dashboard/Admin/AllSellers/AllSellers";
 import MyOrders from "../Components/Pages/Dashboard/Buyer/MyOrders/MyOrders";
 import MyWishlist from "../Components/Pages/Dashboard/Buyer/MyWishlist/MyWishlist";
+import Dashboard from "../Components/Pages/Dashboard/Dashboard";
 import AddProduct from "../Components/Pages/Dashboard/Seller/AddProduct/AddProduct";
 import MyProducts from "../Components/Pages/Dashboard/Seller/MyProducts/MyProducts";
 
@@ -34,6 +35,10 @@ export const routes = createBrowserRouter([
                     })
                 }
             },
+            //     loader: ({ params }) => {
+            //         return params.id
+            //     }
+            // },
             {
                 path: '/login',
                 element: <Login></Login>
@@ -50,7 +55,7 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: "/dashboard",
-                element: <h1 className="text-3xl mt-32">Welcome to dashboard. Please, Check available routes on your left.</h1>
+                element: <Dashboard></Dashboard>
             },
             {
                 path: "/dashboard/myOrders",
