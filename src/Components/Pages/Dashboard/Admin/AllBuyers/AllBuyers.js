@@ -5,7 +5,7 @@ import Spinner from '../../../../Spinner/Spinner';
 import toast from 'react-hot-toast';
 
 const AllBuyers = () => {
-    const { data: allBuyers = [], isLoading, refetch, error } = useQuery({
+    const { data: allBuyers = [], isLoading, refetch } = useQuery({
         queryKey: ["allBuyers"],
         queryFn: async () => {
             const res = await fetch("http://localhost:5000/users?role=Buyer", {
