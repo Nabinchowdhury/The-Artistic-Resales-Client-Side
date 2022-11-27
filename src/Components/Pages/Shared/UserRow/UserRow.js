@@ -19,7 +19,7 @@ const UserRow = ({ index, userData, deleteUser }) => {
                             }
                         </>
                     }
-                    <button className='btn btn-error btn-xs ml-2' onClick={() => deleteUser(_id)}>Delete</button>
+                    <button className='btn btn-error btn-xs ml-2' onClick={() => deleteUser(email)}>Delete</button>
                 </>
 
             </td>

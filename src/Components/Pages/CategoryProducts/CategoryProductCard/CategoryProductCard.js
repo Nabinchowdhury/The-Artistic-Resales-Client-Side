@@ -2,7 +2,7 @@ import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 import useBooking from '../../../Hooks/useBooking/useBooking';
 
-const CategoryProductCard = ({ product, setBookingProduct }) => {
+const CategoryProductCard = ({ product, setBookingProduct, handleReport }) => {
 
     // console.log(product);
     const [isBooked] = useBooking(product._id)
@@ -21,7 +21,7 @@ const CategoryProductCard = ({ product, setBookingProduct }) => {
                 <p className='text-left'>Seller Name: {product.sellerName} {product.isVerified && <span> <FaCheck className='inline text-blue-600 ml-2'></FaCheck> Verified Seller</span>}</p>
                 <p className='text-left'>Seller Phone: {product.mobileNo}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-error">Report to Admin</button>
+                    <button className="btn btn-error" onClick={() => handleReport(product)}>Report to Admin</button>
                     <button className="btn">Add To WishList</button>
 
                     <label htmlFor="bookModal" className="btn btn-success" disabled={isBooked}

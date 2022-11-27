@@ -1,6 +1,8 @@
 
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaCheck } from 'react-icons/fa';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import useBooking from '../../Hooks/useBooking/useBooking';
@@ -33,6 +35,27 @@ const CategoryProducts = () => {
 
     // }
 
+    const handleReport = product => {
+
+        const report = {
+            productId: product._id,
+            productName: product.productName,
+            sellerEmail: product.sellerEmail,
+            sellerName: product.sellerName
+        }
+
+        axios.post("http://localhost:5000/report", report, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem("AccessToken")}`
+            }
+        }).then(res => {
+            if (res.data.acknowledged) {
+                toast.success("Report successfull")
+            }
+        }).catch(err => console.log(err))
+    }
+
+
     const navigation = useNavigation()
 
 
@@ -59,7 +82,7 @@ const CategoryProducts = () => {
                 <div className={`md:col-span-4 lg:col-span-3`}>
                     <h2 className='text-3xl text-center my-10'>Products</h2>
                     {
-                        categoryProducts.map(product => <CategoryProductCard key={product._id} product={product} setBookingProduct={setBookingProduct} ></CategoryProductCard>
+                        categoryProducts.map(product => <CategoryProductCard key={product._id} product={product} setBookingProduct={setBookingProduct} handleReport={handleReport}></CategoryProductCard>
 
 
                         )

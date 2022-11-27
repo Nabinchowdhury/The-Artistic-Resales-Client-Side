@@ -20,8 +20,8 @@ const AllSellers = () => {
         }
     })
 
-    const deleteUser = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
+    const deleteUser = (email) => {
+        fetch(`http://localhost:5000/users/${email}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",
@@ -31,7 +31,7 @@ const AllSellers = () => {
             .then(data => {
                 if (data?.deletedCount > 0) {
                     toast.success("Deleted Successfully")
-                    refetch(0)
+                    refetch()
                 }
             })
             .catch(err => {

@@ -4,6 +4,7 @@ import Main from "../Components/Layout/Main"
 import CategoryProducts from "../Components/Pages/CategoryProducts/CategoryProducts";
 import AllBuyers from "../Components/Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Components/Pages/Dashboard/Admin/AllSellers/AllSellers";
+import ReportedItems from "../Components/Pages/Dashboard/Admin/ReportedItems/ReportedItems";
 import MyOrders from "../Components/Pages/Dashboard/Buyer/MyOrders/MyOrders";
 import MyWishlist from "../Components/Pages/Dashboard/Buyer/MyWishlist/MyWishlist";
 import Dashboard from "../Components/Pages/Dashboard/Dashboard";
@@ -84,6 +85,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard/admin/buyers",
                 element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+            },
+            {
+                path: "/dashboard/admin/reportedItems",
+                element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
             },
 
         ]
