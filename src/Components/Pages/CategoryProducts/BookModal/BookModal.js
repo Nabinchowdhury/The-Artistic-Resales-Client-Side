@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+
 import { AuthContext } from '../../../Contexts/AuthProvider';
+
 
 const BookModal = ({ bookingProduct, setBookingProduct }) => {
 
@@ -10,12 +11,10 @@ const BookModal = ({ bookingProduct, setBookingProduct }) => {
 
     const { _id, productName, price, status } = bookingProduct
 
-    const navigate = useNavigate()
 
     const handleBooking = (e) => {
         e.preventDefault()
         const form = e.target
-
         const bookingDetails = {
             customerName: user?.displayName,
             customerEmail: user?.email,
@@ -33,9 +32,13 @@ const BookModal = ({ bookingProduct, setBookingProduct }) => {
                 authorization: `bearer ${localStorage.getItem("AccessToken")}`
             }
         }).then(res => {
+
             if (res.data.acknowledged) {
+
                 setBookingProduct(null)
                 toast.success("Booking successfull")
+
+
             }
         }).catch(err => console.log(err))
     }

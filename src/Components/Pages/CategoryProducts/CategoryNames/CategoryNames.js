@@ -22,7 +22,7 @@ const CategoryNames = () => {
             </div>
             <div className="collapse-content ">
                 {
-                    categories.map((category, index) => <li key={index} className='text-left ml-3 hover:underline'><Link to={`/category/${category}`}>{category}</Link></li>)
+                    categories.map((category, index) => <li key={index} className='text-left ml-3 hover:underline'><Link to={`/category/${category}`} onClick={refetch}>{category}</Link></li>)
                 }
 
             </div>
