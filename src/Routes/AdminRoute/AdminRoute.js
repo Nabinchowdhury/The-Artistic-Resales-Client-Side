@@ -20,6 +20,8 @@ const AdminRoute = ({ children }) => {
 
     if (userRole !== "Admin") {
         logOut()
+            .then(() => { })
+            .catch(() => { })
     }
 
 

@@ -15,7 +15,7 @@ const AddProduct = () => {
     const [spinner, setSpinner] = useState(false)
 
     const handleAddProduct = (data) => {
-        // console.log(data);
+
         setSpinner(true)
         const productDetails = {
             productName: data.productName,
@@ -30,7 +30,8 @@ const AddProduct = () => {
             description: data.description,
             sellerName: user?.displayName,
             sellerEmail: user?.email,
-            date: new Date()
+            date: new Date(),
+            status: "Available"
         }
         // console.log(productDetails)
         fetch("http://localhost:5000/products", {
@@ -42,7 +43,7 @@ const AddProduct = () => {
             body: JSON.stringify(productDetails)
         }).then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.acknowledged) {
                     toast.success("Product added successfully")
                     navigate("/dashboard/seller/myProducts")

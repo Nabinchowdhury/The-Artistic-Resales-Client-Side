@@ -5,6 +5,7 @@ import CategoryProducts from "../Components/Pages/CategoryProducts/CategoryProdu
 import AllBuyers from "../Components/Pages/Dashboard/Admin/AllBuyers/AllBuyers";
 import AllSellers from "../Components/Pages/Dashboard/Admin/AllSellers/AllSellers";
 import MyOrders from "../Components/Pages/Dashboard/Buyer/MyOrders/MyOrders";
+import MyWishlist from "../Components/Pages/Dashboard/Buyer/MyWishlist/MyWishlist";
 import AddProduct from "../Components/Pages/Dashboard/Seller/AddProduct/AddProduct";
 import MyProducts from "../Components/Pages/Dashboard/Seller/MyProducts/MyProducts";
 
@@ -26,7 +27,12 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/category/:id',
-                element: <CategoryProducts></CategoryProducts>
+                element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
+                loader: ({ params }) => {
+                    return fetch(`http://localhost:5000/category/${params.id}`, {
+                        headers: { authorization: `bearer ${localStorage.getItem("AccessToken")}` }
+                    })
+                }
             },
             {
                 path: '/login',
@@ -44,7 +50,15 @@ export const routes = createBrowserRouter([
         children: [
             {
                 path: "/dashboard",
+                element: <h1 className="text-3xl mt-32">Welcome to dashboard. Please, Check available routes on your left.</h1>
+            },
+            {
+                path: "/dashboard/myOrders",
                 element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
+            },
+            {
+                path: "/dashboard/myWishlist",
+                element: <PrivateRoute><MyWishlist></MyWishlist></PrivateRoute>
             },
             {
                 path: "/dashboard/seller/addProduct",
@@ -61,7 +75,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/dashboard/admin/buyers",
-                element: <AllBuyers></AllBuyers>
+                element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
 
         ]

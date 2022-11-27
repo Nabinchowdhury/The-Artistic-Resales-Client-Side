@@ -22,7 +22,8 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         {/* Buyer */}
-                        <li><Link>My Orders</Link></li>
+                        <li><Link to="/dashboard/myOrders">My Orders</Link></li>
+                        <li><Link to="/dashboard/myWishlist">My Wishlist</Link></li>
 
                         {/* seller */}
                         {userRole === "Seller" && <>

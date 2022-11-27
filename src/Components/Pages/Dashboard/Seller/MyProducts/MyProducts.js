@@ -26,7 +26,7 @@ const MyProducts = () => {
     }
 
     const deleteProduct = (id) => {
-        console.log(id)
+        // console.log(id)
         fetch(`http://localhost:5000/products/${id}`, {
             method: "DELETE",
             headers: {
@@ -61,11 +61,11 @@ const MyProducts = () => {
                         <tbody>
 
                             {
-                                myProducts.map((product, i) => <tr className="hover">
+                                myProducts.map((product, i) => <tr key={i} className="hover">
                                     <th>{i + 1}</th>
                                     <td>{product.productName}</td>
                                     <td>$ {product.price} </td>
-                                    <td>{product.status ? <>{product.status}</> : "Available"}</td>
+                                    <td>{product.status}</td>
                                     <td>
                                         <>
 
