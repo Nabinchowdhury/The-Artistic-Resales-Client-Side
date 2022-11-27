@@ -9,6 +9,7 @@ import MyWishlist from "../Components/Pages/Dashboard/Buyer/MyWishlist/MyWishlis
 import Dashboard from "../Components/Pages/Dashboard/Dashboard";
 import AddProduct from "../Components/Pages/Dashboard/Seller/AddProduct/AddProduct";
 import MyProducts from "../Components/Pages/Dashboard/Seller/MyProducts/MyProducts";
+import ErrorPage from "../Components/Pages/ErrorPage/ErrorPage";
 
 import Home from "../Components/Pages/Home/Home";
 import Login from "../Components/Pages/Login/Login";
@@ -21,6 +22,7 @@ export const routes = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -52,6 +54,7 @@ export const routes = createBrowserRouter([
     {
         path: '/dashboard',
         element: <DashboardLayout></DashboardLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/dashboard",
