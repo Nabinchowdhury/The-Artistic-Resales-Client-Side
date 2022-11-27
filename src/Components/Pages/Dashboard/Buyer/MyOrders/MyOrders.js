@@ -34,7 +34,7 @@ const MyOrders = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* status:Available */}
+
                             {
                                 orders.map((order, i) => <tr key={order._id}>
                                     <th>{i + 1}</th>

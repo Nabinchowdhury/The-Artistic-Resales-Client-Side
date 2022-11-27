@@ -12,9 +12,9 @@ import CategoryProductCard from './CategoryProductCard/CategoryProductCard';
 const CategoryProducts = () => {
 
     const categoryProducts = useLoaderData()
-    // const id = useLoaderData()
     const [bookingProduct, setBookingProduct] = useState(null)
 
+    // const id = useLoaderData()
     // const [booked, setBooked] = useState(false)
 
     // const { data: categoryProducts = [], isLoading, refetch } = useQuery({

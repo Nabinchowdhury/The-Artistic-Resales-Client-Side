@@ -43,6 +43,26 @@ const MyProducts = () => {
             }).catch(err => console.log(err))
     }
 
+    const handleAdvertisement = (id) => {
+        console.log(id)
+        fetch(`http://localhost:5000/advertisement/${id}`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("AccessToken")}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                if (data?.acknowledged) {
+                    toast.success("Advertised Successfully")
+                    refetch()
+                }
+            }).catch(err => console.log(err))
+
+    }
+
     return (
         <>
             {
@@ -70,9 +90,9 @@ const MyProducts = () => {
                                         <>
 
                                             {
-                                                !product.status && <>
+                                                product.status === "Available" && <>
                                                     {
-                                                        product.isAdvertised ? "" : <button className='btn btn-primary btn-xs '>Advertise</button>
+                                                        product.isAdvertised ? "Advertised" : <button className='btn btn-primary btn-xs ' onClick={() => { handleAdvertisement(product._id) }}>Advertise</button>
                                                     }</>
                                             }
 
