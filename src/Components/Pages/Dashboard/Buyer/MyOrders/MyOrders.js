@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import Spinner from '../../../../Spinner/Spinner';
 
 const MyOrders = () => {
     // image, title, price, and a pay button
@@ -16,6 +17,10 @@ const MyOrders = () => {
 
     const handlePayment = id => {
         console.log(id);
+    }
+
+    if (isLoading) {
+        return <Spinner></Spinner>
     }
 
     return (
