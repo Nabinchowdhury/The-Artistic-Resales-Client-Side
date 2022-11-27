@@ -1,11 +1,12 @@
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaCheck } from 'react-icons/fa';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import useBooking from '../../Hooks/useBooking/useBooking';
+import { ModalContext } from '../../Layout/Main';
 import Spinner from '../../Spinner/Spinner';
 import BookModal from './BookModal/BookModal';
 import CategoryNames from './CategoryNames/CategoryNames';
@@ -14,7 +15,8 @@ import CategoryProductCard from './CategoryProductCard/CategoryProductCard';
 const CategoryProducts = () => {
 
     const categoryProducts = useLoaderData()
-    const [bookingProduct, setBookingProduct] = useState(null)
+    // const [bookingProduct, setBookingProduct] = useState(null)
+    const { bookingProduct, setBookingProduct } = useContext(ModalContext)
 
     // const id = useLoaderData()
     // const [booked, setBooked] = useState(false)
@@ -90,10 +92,7 @@ const CategoryProducts = () => {
 
                 </div>
             </div>
-            {
-                bookingProduct && <BookModal bookingProduct={bookingProduct} setBookingProduct={setBookingProduct}  ></BookModal>
 
-            }
 
         </div>
     );
