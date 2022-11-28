@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import Spinner from '../../../Spinner/Spinner';
 
 const CheckoutForm = ({ booking }) => {
 
@@ -135,6 +136,7 @@ const CheckoutForm = ({ booking }) => {
                     <p >Transaction Id : {transactionId}</p>
                 </>
             }
+            {processing && <Spinner></Spinner>}
         </>
     );
 };
