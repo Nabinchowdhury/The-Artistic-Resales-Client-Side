@@ -71,7 +71,7 @@ const AddProduct = () => {
 
                     <div className="form-control w-full ">
                         <label className="label"> <span className="label-text">Price</span></label>
-                        <input type="number" placeholder='input price in integer' {...register("price", {
+                        <input type="number" min="1" placeholder='input price in integer' {...register("price", {
                             required: "Price is Required"
                         })} className="input input-bordered w-full" />
                         {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
