@@ -25,7 +25,7 @@ const Login = () => {
     const saveUserToDb = (name, email, type) => {
         const user = { name, email, role: type }
         // console.log(user)
-        axios.post('http://localhost:5000/users', user)
+        axios.post('https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/users', user)
             .then(res => {
                 if (res.data.acknowledged) {
                     setUserEmail(email)

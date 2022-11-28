@@ -9,7 +9,7 @@ const AllSellers = () => {
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ["allSellers"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/users?role=Seller", {
+            const res = await fetch("https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/users?role=Seller", {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("AccessToken")}`
                 }
@@ -21,7 +21,7 @@ const AllSellers = () => {
     })
 
     const deleteUser = (email) => {
-        fetch(`http://localhost:5000/users/${email}`, {
+        fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/users/${email}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",
@@ -40,6 +40,25 @@ const AllSellers = () => {
             })
     }
 
+    const handleVerify = (email) => {
+        fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/verifyUser/${email}`, {
+            method: "PUT",
+            headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("AccessToken")}`
+            }
+        }).then((res) => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success("Verification Successfull")
+                    refetch()
+                }
+            })
+            .catch(err => {
+                toast.error("Deletion Failed ")
+                console.log(err)
+            })
+    }
 
 
     if (isLoading) {
@@ -62,7 +81,7 @@ const AllSellers = () => {
                         </thead>
                         <tbody>
                             {
-                                allSellers.map((seller, i) => <UserRow key={seller._id} index={i} userData={seller} deleteUser={deleteUser}></UserRow>)
+                                allSellers.map((seller, i) => <UserRow key={seller._id} index={i} userData={seller} deleteUser={deleteUser} handleVerify={handleVerify}></UserRow>)
                             }
                         </tbody>
                     </table>

@@ -34,7 +34,7 @@ const AddProduct = () => {
             status: "Available"
         }
         // console.log(productDetails)
-        fetch("http://localhost:5000/products", {
+        fetch("https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/products", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -71,7 +71,7 @@ const AddProduct = () => {
 
                     <div className="form-control w-full ">
                         <label className="label"> <span className="label-text">Price</span></label>
-                        <input type="text" {...register("price", {
+                        <input type="number" placeholder='input price in integer' {...register("price", {
                             required: "Price is Required"
                         })} className="input input-bordered w-full" />
                         {errors.price && <p className='text-red-500'>{errors.price.message}</p>}

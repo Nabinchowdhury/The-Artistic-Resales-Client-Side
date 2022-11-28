@@ -4,7 +4,7 @@ const useBooking = (id) => {
     const [isBooked, setIsBooked] = useState(false)
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:5000/isBooked/${id}`, {
+            fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/isBooked/${id}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("AccessToken")}`
                 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { AuthContext } from '../../../Contexts/AuthProvider';
@@ -10,8 +10,22 @@ const BookModal = ({ bookingProduct, setBookingProduct
 
     const { user } = useContext(AuthContext)
 
-    const { _id, productName, price, status, image } = bookingProduct
+    const [product, setProduct] = useState({})
+    useEffect(() => {
+        fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/products/${bookingProduct}`, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem("AccessToken")}`
+            }
+        }).then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                setProduct(data)
+            })
+    },
+        [bookingProduct])
 
+    const { _id, productName, price, status, image } = product
+    // console.log(price);
 
     const handleBooking = (e) => {
         e.preventDefault()
@@ -29,7 +43,7 @@ const BookModal = ({ bookingProduct, setBookingProduct
         }
         // console.log(bookingDetails);
 
-        axios.post("http://localhost:5000/bookings", bookingDetails, {
+        axios.post("https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/bookings", bookingDetails, {
             headers: {
                 authorization: `bearer ${localStorage.getItem("AccessToken")}`
             }
@@ -62,7 +76,9 @@ const BookModal = ({ bookingProduct, setBookingProduct
 
                         <input name="itemName" type="text" defaultValue={productName} readOnly disabled className="input w-full input-bordered" />
 
-                        <input name="price" type="text" defaultValue={`$ ${price}`} readOnly disabled className="input w-full input-bordered" />
+                        <input name="price" type="text" defaultValue={price} readOnly disabled className="input w-full input-bordered" />
+
+
 
                         <input name="phone" type="text" placeholder="Enter Phone Number" className="input w-full input-bordered" required />
 

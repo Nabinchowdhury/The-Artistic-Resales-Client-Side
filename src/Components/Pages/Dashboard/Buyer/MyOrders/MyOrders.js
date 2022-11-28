@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Spinner from '../../../../Spinner/Spinner';
 
 const MyOrders = () => {
@@ -7,7 +8,7 @@ const MyOrders = () => {
     const { data: orders = [], isLoading, refetch } = useQuery({
         queryKey: ["myOrders"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myOrders`, {
+            const res = await fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/myOrders`, {
                 headers: { authorization: `bearer ${localStorage.getItem("AccessToken")}` }
             })
             const data = await res.json()
@@ -15,9 +16,9 @@ const MyOrders = () => {
         }
     })
 
-    const handlePayment = id => {
-        console.log(id);
-    }
+    // const handlePayment = id => {
+    //     console.log(id);
+    // }
 
     if (isLoading) {
         return <Spinner></Spinner>
@@ -52,9 +53,14 @@ const MyOrders = () => {
                                     <td>$ {order.price}</td>
                                     <td>
                                         {
-                                            order.status === "Available" ? <button className='btn btn-success btn-sm' onClick={() => handlePayment(order._id)}>Pay</button> : <>{
-                                                order.isBuyer ? "Paid" : order.status
-                                            }</>
+                                            order.status === "Available" ?
+                                                <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-success btn-sm' >Pay</button> </Link>
+                                                :
+                                                <>
+                                                    {
+                                                        order.isBuyer ? "Paid" : order.status
+                                                    }
+                                                </>
                                         }
                                     </td>
                                 </tr>)

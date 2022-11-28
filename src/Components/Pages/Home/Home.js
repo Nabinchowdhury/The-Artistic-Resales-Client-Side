@@ -7,7 +7,6 @@ import About from './About/About';
 const Home = () => {
     return (
         <div>
-            <h2>Home</h2>
             <Banner></Banner>
             <Categories></Categories>
             <Advertisement></Advertisement>

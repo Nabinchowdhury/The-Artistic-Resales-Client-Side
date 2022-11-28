@@ -8,7 +8,7 @@ const Dashboard = () => {
 
     return (
         <div>
-            <h1 className="text-3xl mt-32">Hi! {user?.displayName} ,  Welcome to {userRole} dashboard. Please, Check available routes on your left.</h1>
+            <h1 className="text-3xl mt-32 mx-5">Hi! {user?.displayName},  Welcome to {userRole} dashboard. Please, Check available routes on your left.</h1>
         </div>
     );
 };

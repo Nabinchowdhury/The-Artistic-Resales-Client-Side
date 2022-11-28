@@ -24,7 +24,7 @@ const CategoryProducts = () => {
     // const { data: categoryProducts = [], isLoading, refetch } = useQuery({
     //     queryKey: ["category", id],
     //     queryFn: async () => {
-    //         const res = await fetch(`http://localhost:5000/category/${id}`, {
+    //         const res = await fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/category/${id}`, {
     //             headers: { authorization: `bearer ${localStorage.getItem("AccessToken")}` }
     //         })
     //         const data = await res.json()
@@ -46,7 +46,7 @@ const CategoryProducts = () => {
             sellerName: product.sellerName
         }
 
-        axios.post("http://localhost:5000/report", report, {
+        axios.post("https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/report", report, {
             headers: {
                 authorization: `bearer ${localStorage.getItem("AccessToken")}`
             }
@@ -70,28 +70,33 @@ const CategoryProducts = () => {
 
     return (
         <div>
-
-            <div className='flex flex-col md:grid md:grid-cols-6 lg:grid-cols-4 gap-4 ' >
-                <div className='md:col-span-2 lg:col-span-1 '>
-                    <div className={`mt-20 sticky top-20 h-auto`}>
-                        <div className={` rounded-2xl `}>
+            {
+                categoryProducts.length ?
+                    <div className='flex flex-col md:grid md:grid-cols-6 lg:grid-cols-4 gap-4 ' >
+                        <div className='md:col-span-2 lg:col-span-1 '>
+                            <div className={`mt-20 sticky top-20 h-auto`}>
+                                <div className={` rounded-2xl `}>
+                                    {
+                                        <CategoryNames></CategoryNames>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div className={`md:col-span-4 lg:col-span-3`}>
+                            <h2 className='text-3xl text-center my-10'>Products</h2>
                             {
-                                <CategoryNames></CategoryNames>
+                                categoryProducts.map(product => <CategoryProductCard key={product._id} product={product} setBookingProduct={setBookingProduct} handleReport={handleReport}></CategoryProductCard>
+
+
+                                )
                             }
+
                         </div>
                     </div>
-                </div>
-                <div className={`md:col-span-4 lg:col-span-3`}>
-                    <h2 className='text-3xl text-center my-10'>Products</h2>
-                    {
-                        categoryProducts.map(product => <CategoryProductCard key={product._id} product={product} setBookingProduct={setBookingProduct} handleReport={handleReport}></CategoryProductCard>
+                    :
+                    <h3 className='text-3xl my-4'>All Items Sold</h3>
+            }
 
-
-                        )
-                    }
-
-                </div>
-            </div>
 
 
         </div>

@@ -8,6 +8,7 @@ import ReportedItems from "../Components/Pages/Dashboard/Admin/ReportedItems/Rep
 import MyOrders from "../Components/Pages/Dashboard/Buyer/MyOrders/MyOrders";
 import MyWishlist from "../Components/Pages/Dashboard/Buyer/MyWishlist/MyWishlist";
 import Dashboard from "../Components/Pages/Dashboard/Dashboard";
+import Payment from "../Components/Pages/Dashboard/Payment/Payment";
 import AddProduct from "../Components/Pages/Dashboard/Seller/AddProduct/AddProduct";
 import MyProducts from "../Components/Pages/Dashboard/Seller/MyProducts/MyProducts";
 import ErrorPage from "../Components/Pages/ErrorPage/ErrorPage";
@@ -33,7 +34,7 @@ export const routes = createBrowserRouter([
                 path: '/category/:id',
                 element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/category/${params.id}`, {
+                    return fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/category/${params.id}`, {
                         headers: { authorization: `bearer ${localStorage.getItem("AccessToken")}` }
                     })
                 }
@@ -64,6 +65,13 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard/myOrders",
                 element: <PrivateRoute><MyOrders></MyOrders></PrivateRoute>
+            },
+            {
+                path: "/dashboard/payment/:id",
+                element: <PrivateRoute><Payment></Payment></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/bookings/${params.id}`, {
+                    headers: { authorization: `bearer ${localStorage.getItem("AccessToken")}` }
+                })
             },
             {
                 path: "/dashboard/myWishlist",

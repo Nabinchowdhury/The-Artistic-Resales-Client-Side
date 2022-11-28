@@ -10,9 +10,12 @@ const Advertisement = () => {
     const { bookingProduct, setBookingProduct } = useContext(ModalContext)
 
     useEffect(() => {
-        fetch("http://localhost:5000/advertisement")
+        fetch("https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/advertisement")
             .then(res => res.json())
-            .then(data => setAdvertisements(data))
+            .then(data => {
+                // console.log(data.length)
+                setAdvertisements(data)
+            })
     }, [user])
 
 
@@ -25,7 +28,7 @@ const Advertisement = () => {
 
         if (change === "prev") {
             let p = id - 1
-            if (p < 1) {
+            if (p < 0) {
                 p = advertisements.length - 1
             }
             setPrev(p)
@@ -53,15 +56,16 @@ const Advertisement = () => {
                                     <figure><img src={advertisement.image} alt="" className='w-full' /></figure>
                                     <div className="card-body   flex  justify-center">
                                         <div className=' '>
-                                            <h2 className="card-title flex justify-center text-3xl">{advertisement.productName}</h2>
+                                            <h2 className="card-title flex justify-center text-3xl mb-3">{advertisement.productName}</h2>
                                             <p className=''>{advertisement.description}</p>
-                                            <p className='text-left'>Price: $ {advertisement.price}</p>
+                                            <p className=''>Price: $ {advertisement.price}</p>
                                         </div>
                                         <div className="card-actions justify-center ">
                                             {/* <button className="btn btn-warning ">Book Now</button> */}
                                             {
                                                 user ? <label htmlFor="bookModal" className="btn btn-warning"
-                                                    onClick={() => setBookingProduct(advertisement)}>Book Now</label> : <Link to='/login'><button className='btn btn-warning'>Login</button> </Link>
+                                                    onClick={() => setBookingProduct(advertisement.itemId
+                                                    )}>Book Now</label> : <Link to='/login'><button className='btn btn-warning'>Login</button> </Link>
                                             }
                                         </div>
                                     </div>

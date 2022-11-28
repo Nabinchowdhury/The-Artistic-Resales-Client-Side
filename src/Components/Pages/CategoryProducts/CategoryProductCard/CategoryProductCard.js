@@ -28,7 +28,7 @@ const CategoryProductCard = ({ product, setBookingProduct, handleReport }) => {
                             <button className="btn">Add To WishList</button>
 
                             <label htmlFor="bookModal" className="btn btn-success" disabled={isBooked}
-                                onClick={() => setBookingProduct(product)}>{isBooked ? "Booked" : "Book Now"}</label>
+                                onClick={() => setBookingProduct(product._id)}>{isBooked ? "Booked" : "Book Now"}</label>
 
                         </div>
                     </div>

@@ -10,7 +10,7 @@ const MyProducts = () => {
     const { data: myProducts = [], isloading, refetch } = useQuery({
         queryKey: ['myProducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
+            const res = await fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/products?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("AccessToken")}`
                 }
@@ -27,7 +27,7 @@ const MyProducts = () => {
 
     const deleteProduct = (id) => {
         // console.log(id)
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/products/${id}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",
@@ -45,7 +45,7 @@ const MyProducts = () => {
 
     const handleAdvertisement = (id) => {
         console.log(id)
-        fetch(`http://localhost:5000/advertisement/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/advertisement/${id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -75,7 +75,7 @@ const MyProducts = () => {
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Sales Status</th>
-                                <th>Favorite Color</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,7 +97,10 @@ const MyProducts = () => {
                                             }
 
 
-                                            <button className='btn btn-error btn-xs ml-2' onClick={() => deleteProduct(product._id)}>Delete</button>
+                                            {product.status === "Available" ? <button className='btn btn-error btn-xs ml-2' onClick={() => deleteProduct(product._id)}>Delete</button>
+                                                :
+                                                <h2>No action Possible</h2>
+                                            }
                                         </>
                                     </td>
                                 </tr>)

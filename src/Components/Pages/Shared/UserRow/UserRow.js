@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-const UserRow = ({ index, userData, deleteUser }) => {
+const UserRow = ({ index, userData, deleteUser, handleVerify }) => {
 
     const { _id, name, email, role, isVerified } = userData
     return (
@@ -15,7 +15,7 @@ const UserRow = ({ index, userData, deleteUser }) => {
                         role === "Seller" &&
                         <>
                             {
-                                isVerified ? <p className='inline'><FaCheck className='inline text-blue-600'></FaCheck> Verified</p> : <button className='btn btn-success btn-xs '>Verify</button>
+                                isVerified ? <p className='inline'><FaCheck className='inline text-blue-600'></FaCheck> Verified</p> : <button className='btn btn-success btn-xs ' onClick={() => handleVerify(email)}>Verify</button>
                             }
                         </>
                     }

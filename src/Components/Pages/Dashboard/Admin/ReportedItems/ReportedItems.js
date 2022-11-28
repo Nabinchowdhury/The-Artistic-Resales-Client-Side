@@ -8,7 +8,7 @@ const ReportedItems = () => {
     const { data: reports = [], isLoading, refetch } = useQuery({
         queryKey: ["reports"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/report", {
+            const res = await fetch("https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/report", {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("AccessToken")}`
                 }
@@ -22,7 +22,7 @@ const ReportedItems = () => {
     const deleteUser = (email) => {
 
 
-        fetch(`http://localhost:5000/users/${email}`, {
+        fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/users/${email}`, {
             method: "DELETE",
             headers: {
                 "content-type": "application/json",
@@ -53,10 +53,10 @@ const ReportedItems = () => {
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Sales Status</th>
-                                <th>Favorite Color</th>
+                                <th>Product Name</th>
+                                <th>Seller</th>
+                                <th>Reporter</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>

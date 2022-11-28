@@ -26,7 +26,7 @@ const SignUp = () => {
             role: type
         }
         // console.log(user)
-        axios.post('http://localhost:5000/users', user)
+        axios.post('https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/users', user)
             .then(res => {
                 // console.log(res.data)
                 if (res.data.acknowledged) {
