@@ -1,11 +1,14 @@
 ## Project name: The Artistic Resales.
 
-### Live Website Link: https://service-review-1c4f4.web.app/
+### Live Website Link: https://the-artistic-resale.web.app/
 
 
 ### Client-side Repository: https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Nabinchowdhury
 
 ### Server-side Repository: https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-Nabinchowdhury
+
+
+### admin  email: nkchowdhury26@gmail.com   password: Ascdvf 
 
 Steps: required for the project-
 
@@ -16,13 +19,14 @@ For Client Side:
     • Firebase is used for authentication.
     • while user is logged in, he/she will get a token (jwt). The token has validity of 10 hours. if someone tries to get data without a valid token server wont give any data.
     • Different AdminRoute, SellerRoute, PrivateRoute is created
+    • while fetching data admin/ seller will be verified in beckend
     • A seller can add products.
     • Only Admin  can Manage users.
     • Buyers can only buy.
     • payment option is implemented    
     • user can book products
     • mongodb is used. data will be stored
-    • 
+    
 
 
 
