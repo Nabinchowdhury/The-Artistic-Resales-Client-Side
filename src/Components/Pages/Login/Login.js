@@ -18,8 +18,10 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
+    // console.log(from);
     if (token) {
-        navigate(from, { replace: true })
+        // console.log(token)
+        navigate('/')
     }
 
     const saveUserToDb = (name, email, type) => {
@@ -28,7 +30,9 @@ const Login = () => {
         axios.post('https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/users', user)
             .then(res => {
                 if (res.data.acknowledged) {
+                    // console.log(res.data.acknowledged)
                     setUserEmail(email)
+                    // console.log(email)
                 }
             })
             .catch(err => console.log(err))
@@ -63,8 +67,9 @@ const Login = () => {
         googleSignIn()
             .then((result) => {
                 const currentUser = result.user
-                toast.success('Sign in SuccessFull')
+                // console.log(object);
                 saveUserToDb(currentUser?.displayName, currentUser?.email, "Buyer")
+                toast.success('Sign in SuccessFull')
                 // navigate("/")
 
             }).catch(err => {

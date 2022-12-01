@@ -15,6 +15,7 @@ import CategoryProductCard from './CategoryProductCard/CategoryProductCard';
 const CategoryProducts = () => {
 
     const categoryProducts = useLoaderData()
+    // console.log(categoryProducts);
     // const [bookingProduct, setBookingProduct] = useState(null)
     const { bookingProduct, setBookingProduct } = useContext(ModalContext)
 

@@ -35,9 +35,7 @@ export const routes = createBrowserRouter([
                 path: '/category/:id',
                 element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>,
                 loader: ({ params }) => {
-                    return fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/category/${params.id}`, {
-                        headers: { authorization: `bearer ${localStorage.getItem("AccessToken")}` }
-                    })
+                    return fetch(`https://b612-used-products-resale-server-side-nabinchowdhury.vercel.app/category/${params.id}`)
                 }
             },
             //     loader: ({ params }) => {
