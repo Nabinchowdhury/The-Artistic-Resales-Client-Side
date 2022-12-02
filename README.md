@@ -3,12 +3,10 @@
 ### Live Website Link: https://the-artistic-resale.web.app/
 
 
-### Client-side Repository: 
+### Client-side Repository: https://github.com/Nabinchowdhury/The-Artistic-Resales-Client-Side
 
-### Server-side Repository: 
+### Server-side Repository: https://github.com/Nabinchowdhury/The-Artistic-Resales-Server
 
-
-### admin  email: nkchowdhury26@gmail.com   password: Ascdvf 
 
 Steps: required for the project-
 
