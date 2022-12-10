@@ -3,12 +3,9 @@
 ### Live Website Link: https://the-artistic-resale.web.app/
 
 
-### Client-side Repository: https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-Nabinchowdhury
+### Client-side Repository: https://github.com/Nabinchowdhury/The-Artistic-Resales-Client-Side
 
-### Server-side Repository: https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-Nabinchowdhury
-
-
-### admin  email: nkchowdhury26@gmail.com   password: Ascdvf 
+### Server-side Repository: https://github.com/Nabinchowdhury/The-Artistic-Resales-Server
 
 Steps: required for the project-
 
