@@ -7,10 +7,6 @@
 
 ### Server-side Repository: https://github.com/Nabinchowdhury/The-Artistic-Resales-Server
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3dc67dc299c0096c3e319a0e495ba5d2aec4acad
 Steps: required for the project-
 
 For Client Side:
