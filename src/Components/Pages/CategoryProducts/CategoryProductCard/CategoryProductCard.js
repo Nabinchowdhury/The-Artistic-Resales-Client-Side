@@ -11,8 +11,8 @@ const CategoryProductCard = ({ product, setBookingProduct, handleReport }) => {
             {
                 product.status === "Available" &&
                 <div className="card lg:card-side bg-base-100 shadow-xl md:mr-10 my-10">
-                    <figure className='w-full lg:w-1/2'><img src={product.image} alt="Album" className='w-full h-full' /></figure>
-                    <div className="card-body">
+                    <figure className='w-full lg:w-1/2 '><img src={product.image} alt="Album" className='w-full h-full' /></figure>
+                    <div className="card-body lg:w-1/2">
                         <h2 className="card-title">{product.productName}</h2>
                         <p className='text-left'>{product.description}</p>
                         <p className='text-left'>Selling Price: ${product.price}</p>
