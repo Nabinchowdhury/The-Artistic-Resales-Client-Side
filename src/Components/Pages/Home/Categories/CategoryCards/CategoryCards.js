@@ -7,7 +7,7 @@ const CategoryCards = ({ category }) => {
 
     return (
         <div className='' >
-            <div className="card w-auto bg-base-100 shadow-xl image-full max-h-60 md:max-h-96">
+            <div className="card w-auto bg-base-100 shadow-xl image-full max-h-60 md:max-h-96  shadow-black	">
                 <figure><img src={card} alt="" className='w-full' /></figure>
                 <div className="card-body mt-15">
                     <h2 className="card-title flex justify-center text-3xl">{category}</h2>

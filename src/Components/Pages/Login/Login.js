@@ -83,7 +83,7 @@ const Login = () => {
 
     return (
         <div className='flex justify-center items-center mt-20'>
-            <div className='w-96 p-7'>
+            <div className='w-96 p-7 border border-black rounded-md'>
                 {
                     showSpinner && <Spinner></Spinner>
                 }
